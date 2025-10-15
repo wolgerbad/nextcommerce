@@ -18,20 +18,14 @@ export default function BookItem({ book }: PropTypes) {
           c.id === book.id
             ? {
                 ...c,
+                totalPrice: (c.quantity * c.price).toFixed(2),
                 quantity: c.quantity++,
               }
             : c
         );
-      else return [...cart, { ...book, quantity: 1 }];
+      else return [...cart, { ...book, quantity: 1, totalPrice: book.price }];
     });
   }
-
-  /*
- IF CART ALREADY HAS THE BOOK, QUANTITY++
- IF CART DOESNT HAVE THE BOOK, {id, quantity}
-*/
-
-  console.log(cart);
 
   return (
     <div className="w-48 flex flex-col justify-between">

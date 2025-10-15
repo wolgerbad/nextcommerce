@@ -2,10 +2,15 @@
 
 import { useState } from 'react';
 import { signIn, signUp } from '../lib/actions';
+import { useRouter } from 'next/navigation';
 
-export default function LoginClient() {
+export default function LoginClient({ session }) {
+  console.log('session client:', session);
   const [isSignUp, setIsSignUp] = useState(false);
   const [error, setError] = useState('');
+  const [signupError, setSignUpError] = useState('');
+
+  const router = useRouter();
 
   async function handleSignIn(formData) {
     const email = formData.get('email');
@@ -13,16 +18,20 @@ export default function LoginClient() {
     const result = await signIn({ email, password });
     console.log(result);
 
+    if (result?.user) router.refresh();
+
     if (!result?.user) setError('Invalid username or password');
   }
 
   async function handleSignUp(formData) {
+    setSignUpError('');
     const name = formData.get('name');
     const email = formData.get('email');
     const password = formData.get('password');
 
     const result = await signUp({ name, email, password });
-    console.log(result);
+    if (result?.user) router.refresh();
+    if (!result?.user) setSignUpError(result);
   }
 
   return (
@@ -157,6 +166,7 @@ export default function LoginClient() {
               className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all duration-200"
               placeholder="Create a password"
             />
+            {signupError && <p className="text-red-500">{signupError}</p>}
           </div>
           <button
             type="submit"

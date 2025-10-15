@@ -34,16 +34,13 @@ export default async function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} antialiased max-w-[70rem] mx-auto flex flex-col min-h-screen`}
       >
-        <div className="max-w-[70rem] mx-auto">
-          <CommerceContextProvider>
-            <Navbar session={session} />
-
-            {children}
-          </CommerceContextProvider>
-          <Footer />
-        </div>
+        <CommerceContextProvider>
+          <Navbar session={session} />
+          <div className="flex-grow h-full">{children}</div>
+        </CommerceContextProvider>
+        <Footer />
       </body>
     </html>
   );
