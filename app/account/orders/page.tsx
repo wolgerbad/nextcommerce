@@ -13,9 +13,7 @@ export default async function ordersPage() {
 
   const orders = await res?.json();
 
-  console.log('orders:', orders);
-
-  if (orders?.error) return <p>Aktif Siparişiniz Bulunmamaktadır</p>;
+  if (orders?.error) return <p>You have no orders to look at...</p>;
 
   if (!session?.user) redirect('/login');
 

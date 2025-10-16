@@ -7,8 +7,9 @@ export default async function checkoutPage() {
   const userId = session?.user.id;
   const user = session?.user;
   const res = await fetch(`${process.env.NEXT_BASE_URL}/api/user/${userId}`);
-  const data = await res.json();
-  const { address } = data[0];
+  const dataWhole = await res.json();
+  const data = dataWhole[0];
+  const address = data?.address;
 
   return <CheckoutClient userId={userId} user={user} address={address} />;
 }

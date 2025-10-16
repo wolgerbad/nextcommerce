@@ -1,7 +1,7 @@
 'use client';
 import { useState } from 'react';
 import BookItem from './BookItem';
-import { useCommerce } from '../lib/context/CommerceContext';
+import { BookType, useCommerce } from '../lib/context/CommerceContext';
 
 export default function BestSellersHero() {
   const [currentSlide, setCurrentSlide] = useState(0);
@@ -42,7 +42,7 @@ export default function BestSellersHero() {
   if (loading) {
     return (
       <div className="flex justify-center items-center h-64">
-        <div className="text-purple-800">Loading...</div>
+        <div className="text-orange-800">Loading...</div>
       </div>
     );
   }
@@ -50,10 +50,9 @@ export default function BestSellersHero() {
   return (
     <div className="relative">
       <h1 className="uppercase text-center text-purple-800 font-bold text-2xl my-10">
-        Çok satanlar
+        Best Sellers
       </h1>
 
-      {/* Books Grid with Animation */}
       <div className="relative max-w-6xl mx-auto">
         <div
           key={currentSlide}
@@ -71,10 +70,8 @@ export default function BestSellersHero() {
         </div>
       </div>
 
-      {/* Navigation */}
       {totalSlides > 1 && (
         <>
-          {/* Arrows */}
           <button
             onClick={goToPrevious}
             className="absolute left-4 top-1/2 transform -translate-y-1/2 bg-purple-600 text-white rounded-full w-10 h-10 flex items-center justify-center hover:bg-purple-700 transition-colors shadow-lg"
@@ -89,7 +86,6 @@ export default function BestSellersHero() {
             ›
           </button>
 
-          {/* Dots */}
           <div className="flex justify-center gap-2 mt-6">
             {Array.from({ length: totalSlides }, (_, index) => (
               <button
@@ -97,7 +93,7 @@ export default function BestSellersHero() {
                 onClick={() => goToSlide(index)}
                 className={`w-3 h-3 rounded-full transition-colors ${
                   currentSlide === index
-                    ? 'bg-purple-600'
+                    ? 'bg-orange-600'
                     : 'bg-gray-300 hover:bg-purple-300'
                 }`}
               />

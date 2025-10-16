@@ -11,6 +11,6 @@ export default async function profilePage() {
   const user = userData[0];
 
   if (!user) redirect('/login');
-
+  if (!userId) return;
   return <ProfileClient userId={userId} user={user} />;
 }

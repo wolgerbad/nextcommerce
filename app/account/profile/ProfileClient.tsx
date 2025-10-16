@@ -1,11 +1,19 @@
 'use client';
 
+import { User } from '@/app/generated/prisma';
 import { updateUser } from '@/app/lib/actions';
+import { useFormStatus } from 'react-dom';
 
-export default function ProfileClient({ userId, user }) {
+export default function ProfileClient({
+  userId,
+  user,
+}: {
+  userId: string;
+  user: { name: string; email: string; address: string; national_id: string };
+}) {
   const { name, email, address: userAddress, national_id } = user;
 
-  async function handleForm(formData) {
+  async function handleForm(formData: any) {
     const address = formData.get('address');
     const nationalId = formData.get('nationalId');
 
@@ -39,7 +47,7 @@ export default function ProfileClient({ userId, user }) {
           />
         </div>
         <div>
-          <label className="block mb-2 font-medium">E-posta adresi</label>
+          <label className="block mb-2 font-medium">Email address</label>
           <input
             type="text"
             value={email}
@@ -49,7 +57,7 @@ export default function ProfileClient({ userId, user }) {
           />
         </div>
         <div>
-          <label className="block mb-2 font-medium">Adres</label>
+          <label className="block mb-2 font-medium">Address</label>
           <textarea
             rows={5}
             name="address"
@@ -58,7 +66,7 @@ export default function ProfileClient({ userId, user }) {
           />
         </div>
         <div>
-          <label className="block mb-2 font-medium">Kimlik numarası</label>
+          <label className="block mb-2 font-medium">National ID </label>
           <input
             name="nationalId"
             defaultValue={national_id}
@@ -67,11 +75,26 @@ export default function ProfileClient({ userId, user }) {
           />
         </div>
         <div className="flex justify-end mt-4">
-          <button className="bg-orange-500 hover:bg-orange-600 px-4 py-2 text-white rounded-md font-medium ">
-            Update Profile
-          </button>
+          <Button />
         </div>
       </form>
     </div>
+  );
+}
+
+function Button() {
+  const { pending } = useFormStatus();
+  console.log(pending);
+
+  return (
+    <button
+      className={`${
+        pending
+          ? 'bg-gray-400 cursor-not-allowed'
+          : 'bg-orange-500 hover:bg-orange-600'
+      }  px-4 py-2 text-white rounded-md font-medium`}
+    >
+      {pending ? 'Updating...' : 'Update Profile'}
+    </button>
   );
 }

@@ -4,6 +4,7 @@ import { headers } from 'next/headers';
 import { auth } from './auth';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
+import { PurchaseItem } from '../checkout/CheckoutClient';
 
 export async function signIn({
   email,
@@ -22,8 +23,8 @@ export async function signIn({
     revalidatePath('/login');
 
     return result;
-  } catch (error) {
-    console.error(error.message);
+  } catch (error: any) {
+    return error.message;
   }
 }
 
@@ -46,14 +47,15 @@ export async function signUp({
     });
     revalidatePath('/login');
     return result;
-  } catch (error) {
+  } catch (error: any) {
     return error.message;
   }
 }
 
 export async function signOut() {
   await auth.api.signOut({ headers: await headers() });
-  // revalidatePath('/');
+  revalidatePath('/account');
+  redirect('/login');
 }
 
 export async function createPurchase({
@@ -64,17 +66,15 @@ export async function createPurchase({
   email,
   phone,
   purchase_items,
+}: {
+  userId?: string;
+  address: string;
+  totalPrice: number;
+  discount?: number;
+  email: string;
+  phone: string;
+  purchase_items: PurchaseItem[];
 }) {
-  console.log(
-    'inputss:',
-    userId,
-    address,
-    totalPrice,
-    discount,
-    email,
-    phone,
-    purchase_items
-  );
   const res = await fetch(`${process.env.NEXT_BASE_URL}/api/purchase`, {
     method: 'POST',
     headers: { 'Content-Type': 'application/json' },
@@ -97,7 +97,7 @@ export async function createPurchase({
   return res.ok;
 }
 
-export async function deletePurchase(id, userId) {
+export async function deletePurchase(id: number, userId: string) {
   await fetch(`${process.env.NEXT_BASE_URL}/api/purchase?id=${id}`, {
     method: 'DELETE',
   });
@@ -105,8 +105,15 @@ export async function deletePurchase(id, userId) {
   revalidatePath(`/api/purchase/${userId}`);
 }
 
-export async function updateUser({ userId: id, address, nationalId }) {
-  console.log('updateUser:', id, address, nationalId);
+export async function updateUser({
+  userId: id,
+  address,
+  nationalId,
+}: {
+  userId: string;
+  address: string;
+  nationalId: string;
+}) {
   await fetch(`${process.env.NEXT_BASE_URL}/api/user/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },

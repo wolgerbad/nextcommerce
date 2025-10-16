@@ -2,31 +2,31 @@ export default function WhyChooseUs() {
   return (
     <section className="py-12">
       <h2 className="text-center text-2xl font-bold text-purple-800 mb-8 uppercase">
-        Neden Bizden Almalısınız?
+        Why Choose Us?
       </h2>
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
         <div className="border border-gray-200 rounded-md p-6 bg-white shadow-sm">
-          <h3 className="font-semibold text-lg mb-2">Hızlı Kargo</h3>
+          <h3 className="font-semibold text-lg mb-2">Fast Shipping</h3>
           <p className="text-sm text-gray-600">
-            Aynı gün kargolama ve kapınıza hızlı teslimat.
+            Same-day shipping and fast delivery to your door.
           </p>
         </div>
         <div className="border border-gray-200 rounded-md p-6 bg-white shadow-sm">
-          <h3 className="font-semibold text-lg mb-2">Güvenli Ödeme</h3>
+          <h3 className="font-semibold text-lg mb-2">Secure Payment</h3>
           <p className="text-sm text-gray-600">
-            PCI-DSS uyumlu altyapı ile %100 güvenli ödeme.
+            100% secure payment with PCI-DSS compliant infrastructure.
           </p>
         </div>
         <div className="border border-gray-200 rounded-md p-6 bg-white shadow-sm">
-          <h3 className="font-semibold text-lg mb-2">Uygun Fiyat</h3>
+          <h3 className="font-semibold text-lg mb-2">Affordable Price</h3>
           <p className="text-sm text-gray-600">
-            Sürekli kampanyalar ve en iyi fiyat garantisi.
+            Ongoing promotions and best price guarantee.
           </p>
         </div>
         <div className="border border-gray-200 rounded-md p-6 bg-white shadow-sm">
-          <h3 className="font-semibold text-lg mb-2">Müşteri Desteği</h3>
+          <h3 className="font-semibold text-lg mb-2">Customer Support</h3>
           <p className="text-sm text-gray-600">
-            7/24 destek ile her adımda yanınızdayız.
+            We are with you every step with 24/7 support.
           </p>
         </div>
       </div>

@@ -10,8 +10,6 @@ import { TiTickOutline } from 'react-icons/ti';
 export default function CartClient() {
   const {
     cart,
-    discount,
-    setDiscount,
     totalCart,
     handleCartDelete,
     cargoFee,
@@ -27,22 +25,22 @@ export default function CartClient() {
             <span className="bg-orange-200 p-4 rounded-full">
               <FaShoppingCart className="text-3xl text-orange-600" />
             </span>
-            <h1 className="text-xl font-semibold">
-              Sepetinde ürün bulunmamaktadır.
+            <h1 className="text-lg font-semibold">
+              Your cart looks lonely… Add some items to get started!
             </h1>
           </div>
           <Link
             href="/"
             className="bg-orange-600 text-white font-semibold px-6 py-3"
           >
-            Alışverişe Başla
+            Start Shopping!
           </Link>
         </div>
       ) : (
         <>
           <div className="col-span-3 p-4 flex flex-col gap-4">
             {cart.map((cartItem) => {
-              const totalPrice = (cartItem.quantity * cartItem.price).toFixed(
+              const totalPrice = (cartItem.quantity * +cartItem.price).toFixed(
                 2
               );
 
@@ -60,7 +58,7 @@ export default function CartClient() {
                     <p className="font-thin text-sm">{cartItem.author}</p>
                   </div>
                   <div className="col-start-4 col-span-1">
-                    <p>Adet</p>
+                    <p>Quantity</p>
                     <button
                       onClick={() => handleCartDecrement(cartItem.id)}
                       className="mr-2 text-purple-800 font-semibold"
@@ -76,15 +74,15 @@ export default function CartClient() {
                     </button>
                   </div>
                   <div className="col-start-5 col-span-1">
-                    <p>Fiyat</p>
-                    <p>{cartItem.price}</p>
+                    <p>Price</p>
+                    <p>₺{cartItem.price}</p>
                   </div>
                   <div className="col-start-6 col-span-1">
-                    <p>Toplam</p>
-                    <p>{totalPrice} TL</p>
+                    <p>Total</p>
+                    <p>₺{totalPrice}</p>
                   </div>
                   <div className="col-start-7 col-span-1 h-fit">
-                    <p>Sil</p>
+                    <p>Delete</p>
                     <button onClick={() => handleCartDelete(cartItem.id)}>
                       <MdDelete className="text-2xl text-red-800" />
                     </button>
@@ -96,29 +94,29 @@ export default function CartClient() {
           <div className="col-span-1 flex flex-col gap-4">
             <Link
               href="/"
-              className="text-purple-800 font-semibold border-2 border-purple-800 rounded-md block py-2 px-4 text-center"
+              className="text-purple-800 hover:bg-gray-50 font-semibold border-2 border-purple-800 rounded-md block py-2 px-4 text-center"
             >
-              Alışverişe Devam Et
+              Continue Shopping
             </Link>
             <div className="border-2 border-gray-300 rounded-md flex flex-col gap-2 py-2 px-4">
               <span className="flex justify-between font-bold">
-                <p>Sepet Toplamı</p>
-                <p>{totalCart - cargoFee} TL</p>
+                <p>Cart Total</p>
+                <p>₺{totalCart}</p>
               </span>
               <span className="flex justify-between">
-                <p>Kargo Ücreti</p>
-                <p>{cargoFee} TL</p>
+                <p>Cargo Fee</p>
+                <p>₺{cargoFee}</p>
               </span>
               <span className="flex justify-between font-semibold">
-                <p>Genel Toplam</p>
-                <p>{totalCart.toFixed(2)} TL</p>
+                <p>Grand Total</p>
+                <p>₺{(totalCart + cargoFee).toFixed(2)}</p>
               </span>
             </div>
             <Link
               href="/checkout"
-              className="text-white bg-orange-500 font-semibold rounded-md block py-2 px-4 text-center"
+              className="text-white bg-orange-500 hover:bg-orange-600 font-semibold rounded-md block py-2 px-4 text-center"
             >
-              Satın al
+              Checkout
             </Link>
           </div>
         </>

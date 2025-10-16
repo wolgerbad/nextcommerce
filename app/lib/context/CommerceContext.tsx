@@ -1,6 +1,13 @@
 'use client';
 
-import { createContext, useContext, useEffect, useState } from 'react';
+import {
+  createContext,
+  Dispatch,
+  SetStateAction,
+  useContext,
+  useEffect,
+  useState,
+} from 'react';
 
 export type BookType = {
   id: number;
@@ -12,8 +19,34 @@ export type BookType = {
   stock: number;
   rating: number;
 };
+type CartItem = {
+  author: string;
+  description: string;
+  id: number;
+  image: string;
+  price: string | number;
+  quantity: number;
+  rating: string | number;
+  stock: number;
+  title: string;
+  totalPrice: string | number;
+};
 
-const CommerceContext = createContext();
+type CartType = CartItem[];
+
+type CommerceContextType = {
+  cart: CartType;
+  setCart: Dispatch<SetStateAction<CartType>>;
+  books: BookType[];
+  loading: boolean;
+  totalCart: number;
+  cargoFee: number;
+  handleCartDelete: (id: number) => void;
+  handleCartDecrement: (id: number) => void;
+  handleCartIncrement: (id: number) => void;
+};
+
+const CommerceContext = createContext<CommerceContextType | null>(null);
 
 export function CommerceContextProvider({
   children,
@@ -22,28 +55,20 @@ export function CommerceContextProvider({
 }>) {
   const [books, setBooks] = useState<BookType[]>([]);
   const [loading, setLoading] = useState(true);
-  const [discount, setDiscount] = useState(0);
-  const [cart, setCart] = useState(() => {
-    const storageCart = localStorage.getItem('cart');
-    if (!storageCart) return [];
-    return JSON.parse(storageCart);
-  });
-  // const cartTotal = cart?.reduce((acc, cur) => acc + cur.totalPrice);
+  const [cart, setCart] = useState<CartType>([]);
   const totalCartVal = cart.reduce(
-    (acc, cur) => acc + cur.quantity * cur.price,
+    (acc, cur) => acc + cur.quantity * +cur.price,
     0
   );
   const cargoFee = 59.99;
 
-  const totalCart = discount
-    ? ((+totalCartVal.toFixed(2) + cargoFee) * 9) / 10
-    : +totalCartVal.toFixed(2) + cargoFee;
+  const totalCart = +totalCartVal.toFixed(2);
 
-  function handleCartDelete(id) {
+  function handleCartDelete(id: number) {
     setCart((prevCart) => prevCart.filter((item) => item.id !== id));
   }
 
-  function handleCartDecrement(id) {
+  function handleCartDecrement(id: number) {
     setCart((cart) =>
       cart.map((c) => {
         return c.id === id
@@ -57,7 +82,7 @@ export function CommerceContextProvider({
 
     setCart((cart) => cart.filter((c) => c.quantity !== 0));
   }
-  function handleCartIncrement(id) {
+  function handleCartIncrement(id: number) {
     setCart((cart) =>
       cart.map((c) =>
         c.id === id
@@ -69,6 +94,14 @@ export function CommerceContextProvider({
       )
     );
   }
+
+  useEffect(function () {
+    const storageCart = localStorage.getItem('cart');
+    if (!storageCart) return;
+
+    const parsedCart = JSON.parse(storageCart);
+    setCart(parsedCart);
+  }, []);
 
   useEffect(() => {
     async function fetchBooks() {
@@ -97,8 +130,6 @@ export function CommerceContextProvider({
     <CommerceContext.Provider
       value={{
         cart,
-        discount,
-        setDiscount,
         setCart,
         books,
         loading,
@@ -114,10 +145,10 @@ export function CommerceContextProvider({
   );
 }
 
-export function useCommerce() {
+export function useCommerce(): CommerceContextType {
   const ctx = useContext(CommerceContext);
 
-  if (!ctx) return;
+  if (!ctx) throw new Error('You probably used context outside of its scope.');
 
   return ctx;
 }
