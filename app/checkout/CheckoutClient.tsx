@@ -45,6 +45,7 @@ export default function CheckoutClient({
 }) {
   const [phoneError, setPhoneError] = useState('');
   const [phoneVal, setPhoneVal] = useState('');
+  const [error, setError] = useState('');
 
   const { cart, setCart, totalCart, cargoFee } = useCommerce();
   const router = useRouter();
@@ -52,6 +53,10 @@ export default function CheckoutClient({
   async function handleForm(formData: any) {
     setPhoneError('');
     if (!user) return;
+    if (!cart.length) {
+      setError('Your cart is empty');
+      return;
+    }
 
     const email = user.email;
     const phone = formData.get('phone');
@@ -76,10 +81,10 @@ export default function CheckoutClient({
       purchase_items: purchaseItems,
     });
 
-    if (result) {
+    if (result === 'success') {
       router.push('/checkout/success');
       setCart([]);
-    }
+    } else setError(result);
   }
 
   return (
@@ -204,9 +209,10 @@ export default function CheckoutClient({
                 required
                 defaultValue={address}
                 placeholder="Please enter your address clearly. Example: Neighborhood, Street/Avenue, Building No., Apartment No., City/District"
-                className="w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
+                className="-mb-4 w-full p-2 border border-gray-300 rounded focus:ring-2 focus:ring-blue-500 focus:border-blue-500 resize-none"
               />
             </div>
+            {error && <p className="text-red-800">{error}</p>}
 
             {!userId ? (
               <Link

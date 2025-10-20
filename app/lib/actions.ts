@@ -75,26 +75,27 @@ export async function createPurchase({
   phone: string;
   purchase_items: PurchaseItem[];
 }) {
-  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/purchase`, {
-    method: 'POST',
-    headers: { 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      user_id: userId,
-      address,
-      discount,
-      total_price: totalPrice,
-      email,
-      phone,
-      purchase_items,
-    }),
-  });
-  if (!res.ok) {
-    throw new Error('Failed to create purchase');
-  }
+  try {
+    await fetch(`${process.env.NEXT_BASE_URL}/api/purchase`, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({
+        user_id: userId,
+        address,
+        discount,
+        total_price: totalPrice,
+        email,
+        phone,
+        purchase_items: JSON.stringify(purchase_items),
+      }),
+    });
 
-  revalidatePath('/account/orders');
-  revalidatePath(`/api/purchase/${userId}`);
-  return res.ok;
+    revalidatePath('/account/orders');
+    revalidatePath(`/api/purchase/${userId}`);
+    return 'success';
+  } catch (error: any) {
+    return error.message;
+  }
 }
 
 export async function deletePurchase(id: number, userId: string) {

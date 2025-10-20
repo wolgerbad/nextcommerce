@@ -7,7 +7,7 @@ export default function Footer() {
         <div>
           <h4 className="font-semibold mb-3 text-gray-900">About Us</h4>
           <p className="text-gray-600">
-            Kitapsepeti: Discover millions of books at affordable prices.
+            Bookify: Discover millions of books at affordable prices.
           </p>
         </div>
         <div>
@@ -68,7 +68,7 @@ export default function Footer() {
         </div>
       </div>
       <div className="mt-8 flex flex-col sm:flex-row items-center justify-between text-gray-500">
-        <p>© {new Date().getFullYear()} Kitapsepeti. All rights reserved.</p>
+        <p>© {new Date().getFullYear()} Bookify. All rights reserved.</p>
         <div className="flex gap-4">
           <Link href="/gizlilik" className="hover:text-purple-800">
             Privacy

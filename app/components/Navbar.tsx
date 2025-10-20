@@ -38,7 +38,7 @@ export default function Navbar({ session }: { session: SessionType }) {
         href="/"
         className=" text-purple-800 text-xl px-8 py-4 font-semibold tracking-wider rounded-sm"
       >
-        kitapsepeti
+        bookify
       </Link>
 
       <div className="flex gap-2 text-white">

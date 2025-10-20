@@ -5,7 +5,6 @@ import Navbar from './components/Navbar';
 import Footer from './components/Footer';
 import { auth } from './lib/auth';
 import { headers } from 'next/headers';
-import { MdAccountCircle } from 'react-icons/md';
 import { CommerceContextProvider } from './lib/context/CommerceContext';
 
 const geistSans = localFont({
