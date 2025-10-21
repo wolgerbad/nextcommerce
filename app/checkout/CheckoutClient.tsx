@@ -35,13 +35,13 @@ type User =
   | undefined;
 
 export default function CheckoutClient({
-  userId,
-  user,
+  userId = '',
+  user = undefined,
   address = '',
 }: {
   userId?: string;
-  user: User;
-  address: string;
+  user?: User | undefined;
+  address?: string;
 }) {
   const [phoneError, setPhoneError] = useState('');
   const [phoneVal, setPhoneVal] = useState('');
