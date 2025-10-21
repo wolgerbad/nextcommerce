@@ -13,7 +13,7 @@ export default async function ordersPage() {
 
   const orders = await res?.json();
 
-  if (orders?.error) return <p>You have no orders to look at...</p>;
+  if (orders?.error) return <p>You have no order to look at.</p>;
 
   if (!session?.user) redirect('/login');
 

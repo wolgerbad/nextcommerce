@@ -51,7 +51,7 @@ export default function OrderClient({ orders }: { orders: OrderType[] }) {
         </thead>
 
         <tbody className="divide-y divide-gray-100">
-          {optimisticOrders.map((order) => {
+          {optimisticOrders?.map((order) => {
             const formattedDate = format(order.createdAt, 'MM/dd/yyyy');
             return (
               <tr key={order.id}>
