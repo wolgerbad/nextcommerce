@@ -5,6 +5,7 @@ import { auth } from './auth';
 import { revalidatePath } from 'next/cache';
 import { redirect } from 'next/navigation';
 import { PurchaseItem } from '../checkout/CheckoutClient';
+import { baseUrl } from './baseUrl';
 
 export async function signIn({
   email,
@@ -76,7 +77,7 @@ export async function createPurchase({
   purchase_items: PurchaseItem[];
 }) {
   try {
-    await fetch(`${process.env.NEXT_BASE_URL}/api/purchase`, {
+    await fetch(`${baseUrl}/api/purchase`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify({
@@ -99,7 +100,7 @@ export async function createPurchase({
 }
 
 export async function deletePurchase(id: number, userId: string) {
-  await fetch(`${process.env.NEXT_BASE_URL}/api/purchase?id=${id}`, {
+  await fetch(`${baseUrl}/api/purchase?id=${id}`, {
     method: 'DELETE',
   });
 
@@ -115,7 +116,7 @@ export async function updateUser({
   address: string;
   nationalId: string;
 }) {
-  await fetch(`${process.env.NEXT_BASE_URL}/api/user/${id}`, {
+  await fetch(`${baseUrl}/api/user/${id}`, {
     method: 'PATCH',
     headers: { 'Content-Type': 'application/json' },
     body: JSON.stringify({ address, national_id: nationalId }),
