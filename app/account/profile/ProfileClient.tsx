@@ -20,8 +20,6 @@ export default function ProfileClient({
     await updateUser({ userId, address, nationalId });
   }
 
-  console.log('user infos:', user.address, user.national_id);
-
   return (
     <div>
       <h1 className="text-purple-600 font-semibold text-2xl mb-4">
@@ -84,7 +82,6 @@ export default function ProfileClient({
 
 function Button() {
   const { pending } = useFormStatus();
-  console.log(pending);
 
   return (
     <button

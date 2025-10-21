@@ -2,7 +2,7 @@ import { headers } from 'next/headers';
 import { auth } from '../lib/auth';
 import CheckoutClient from './CheckoutClient';
 
-export default async function checkoutPage() {
+export default async function CheckoutPage() {
   const session = await auth.api.getSession({ headers: await headers() });
   const userId = session?.user.id;
   const user = session?.user;

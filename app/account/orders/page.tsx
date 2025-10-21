@@ -3,7 +3,7 @@ import { headers } from 'next/headers';
 import OrderClient from './OrderClient';
 import { redirect } from 'next/navigation';
 
-export default async function ordersPage() {
+export default async function OrdersPage() {
   const session = await auth.api.getSession({ headers: await headers() });
   const userId = session?.user?.id;
 

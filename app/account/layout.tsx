@@ -7,7 +7,7 @@ type PropTypes = {
   children: ReactNode;
 };
 
-export default function accountLayout({ children }: PropTypes) {
+export default function AccountLayout({ children }: PropTypes) {
   return (
     <div className="grid grid-cols-4 min-h-[calc(100vh-320px)] mt-8">
       <nav className="h-full">

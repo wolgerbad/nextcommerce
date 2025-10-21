@@ -1,5 +1,5 @@
 import CartClient from './CartClient';
 
-export default function cartPage() {
+export default function CartPage() {
   return <CartClient />;
 }
