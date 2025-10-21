@@ -1,6 +1,7 @@
 import { headers } from 'next/headers';
 import { auth } from '../lib/auth';
 import CheckoutClient from './CheckoutClient';
+import { baseUrl } from '../lib/baseUrl';
 
 export default async function CheckoutPage() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -9,7 +10,7 @@ export default async function CheckoutPage() {
 
   if (!userId) return <CheckoutClient />;
 
-  const res = await fetch(`${process.env.NEXT_BASE_URL}/api/user/${userId}`);
+  const res = await fetch(`${baseUrl}/api/user/${userId}`);
   const dataWhole = await res.json();
   const data = dataWhole[0];
   const address = data?.address;

@@ -2,6 +2,7 @@ import { auth } from '@/app/lib/auth';
 import { headers } from 'next/headers';
 import OrderClient from './OrderClient';
 import { redirect } from 'next/navigation';
+import { baseUrl } from '@/app/lib/baseUrl';
 
 export default async function OrdersPage() {
   const session = await auth.api.getSession({ headers: await headers() });
@@ -9,9 +10,7 @@ export default async function OrdersPage() {
 
   if (!userId) redirect('/login');
 
-  const res = await fetch(
-    `${process.env.NEXT_BASE_URL}/api/purchase/${userId}`
-  );
+  const res = await fetch(`${baseUrl}/api/purchase/${userId}`);
 
   const orders = await res?.json();
 
