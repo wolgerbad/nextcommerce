@@ -16,5 +16,5 @@ export default async function OrdersPage() {
 
   if (orders?.error) return <p>You have no order to look at.</p>;
 
-  if (!session?.user) return <OrderClient orders={orders} />;
+  return <OrderClient orders={orders} />;
 }
