@@ -53,10 +53,10 @@ Deployed on **Vercel** with a fully functional e-commerce workflow from browsing
 ---
 
 ## 💡 What I Learned
-- Managing optimistic UI state with database  
-- Structuring backend logic in Next.js API routes  
-- Handling role-based permissions cleanly in SQL  
-- Creating reusable UI components with React.js
+- Handling authentication and session management with Better Auth  
+- Structuring database relations for user orders and products  
+- Implementing server-rendered dynamic pages in Next.js  
+- Managing CRUD operations in a real-world commerce flow  
 
 ---
 
