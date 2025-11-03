@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Bookify [![Live Demo](https://img.shields.io/badge/-Live%20Demo-green?style=flat-square)](https://nextcommerce-blue.vercel.app/) [![Repo](https://img.shields.io/badge/-GitHub-black?style=flat-square&logo=github)](https://github.com/wolgerbad/nextcommerce)
 
-## Getting Started
+Full-stack e-commerce app where authenticated users can browse, purchase, and manage their books.
 
-First, run the development server:
+![Next.js](https://img.shields.io/badge/Next.js-000?logo=nextdotjs&logoColor=white)
+![React](https://img.shields.io/badge/React-61DAFB?logo=react&logoColor=black)
+![PostgreSQL](https://img.shields.io/badge/PostgreSQL-336791?logo=postgresql&logoColor=white)
+![TailwindCSS](https://img.shields.io/badge/TailwindCSS-0F172A?logo=tailwindcss&logoColor=06B6D4)
+![Better Auth](https://img.shields.io/badge/Auth-Better%20Auth-blue?logo=auth0&logoColor=white)
+![Prisma](https://img.shields.io/badge/Prisma-2D3748?logo=prisma&logoColor=white)
+![Vercel](https://img.shields.io/badge/Deployed%20on-Vercel-black?logo=vercel)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+---
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 📖 Overview
+Bookify is a modern e-commerce platform built for book enjoyers.  
+Users can explore available titles, purchase books, and manage orders through a personal profile.  
+It’s designed to explore secure authentication, relational data handling, and full-stack app structure with Next.js and PostgreSQL.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ✨ Features
+- 🛒 Browse and purchase books  
+- 👤 User authentication with Better Auth  
+- 📚 View and manage purchased books on user profile  
+- ❌ Cancel or reorder items  
+- ⚡ Server-side rendering for speed and SEO  
 
-## Learn More
+---
 
-To learn more about Next.js, take a look at the following resources:
+## 🧠 Technical Implementation
+Developed with **Next.js** for both frontend and backend logic, integrated with **PostgreSQL** via **Prisma ORM** for data management.  
+Authentication handled using **Better Auth**.  
+Frontend styled using **TailwindCSS**, ensuring a clean and responsive UI.  
+Deployed on **Vercel** with a fully functional e-commerce workflow from browsing to checkout.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+---
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 🧩 Getting Started
+1. Clone the repo  
+   ```bash
+   git clone https://github.com/wolgerbad/blog
+2. Install dependencies
+   ```bash
+   npm install
+3. Run locally
+   ```bash
+   npm run dev
 
-## Deploy on Vercel
+## 🌍 Live Demo
+🔗 [Visit Live Site](https://nextcommerce-blue.vercel.app/)
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+---
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+## 💡 What I Learned
+- Managing optimistic UI state with database  
+- Structuring backend logic in Next.js API routes  
+- Handling role-based permissions cleanly in SQL  
+- Creating reusable UI components with React.js
+
+---
+
+## 🛠️ Tech Stack
+**Frontend:** Next.js, TailwindCSS  
+**Backend:** Next.js API Routes  
+**Database:** PostgreSQL, Prisma  
+**Auth:** Better Auth  
+**Deployment:** Vercel
+
+---
+
+## 📬 Contact
+👤 **Emir Işık**  
+🌐 [Portfolio](https://emirisk.vercel.app)  
+💼 [LinkedIn](https://www.linkedin.com/in/emir-isik)  
+📧 emir.isikdev@gmail.com
